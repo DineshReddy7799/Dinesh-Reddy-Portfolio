@@ -957,7 +957,7 @@
                 display: none;
             }
             
-            /* Side mobile menu */
+            /* Side mobile menu without close button */
             .nav-links.active {
                 display: flex;
                 flex-direction: column;
@@ -968,7 +968,7 @@
                 height: 100vh;
                 background: rgba(15, 23, 42, 0.98);
                 backdrop-filter: blur(20px);
-                padding: 80px 30px 30px;
+                padding: 100px 30px 30px;
                 border-left: 1px solid rgba(255, 255, 255, 0.1);
                 z-index: 999;
                 overflow-y: auto;
@@ -982,31 +982,23 @@
             }
             
             .nav-links li {
-                margin-bottom: 20px;
+                margin-bottom: 25px;
             }
             
             .nav-links a {
-                font-size: 1.1rem;
-                padding: 12px 0;
+                font-size: 1.2rem;
+                padding: 15px 0;
                 display: block;
                 border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                text-align: center;
             }
             
             .nav-links a::after {
                 display: none;
             }
             
-            /* Close button for mobile menu */
-            .close-menu {
-                position: absolute;
-                top: 20px;
-                right: 20px;
-                background: none;
-                border: none;
-                color: var(--light);
-                font-size: 1.5rem;
-                cursor: pointer;
-                z-index: 1001;
+            .nav-links a:hover {
+                color: var(--primary);
             }
         }
         
@@ -1169,13 +1161,10 @@
     <nav>
         <div class="container nav-container">
             <div class="logo">DINESH REDDY</div>
-            <!-- <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
-            </button> -->
+            </button>
             <ul class="nav-links" id="navLinks">
-                <!-- <button class="close-menu" id="closeMenu">
-                    <i class="fas fa-times"></i>
-                </button> -->
                 <li><a href="#about">About</a></li>
                 <li><a href="#education">Education</a></li>
                 <li><a href="#skills">Skills</a></li>
@@ -1543,7 +1532,6 @@
     <script>
         // Mobile menu functionality
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const closeMenuBtn = document.getElementById('closeMenu');
         const navLinks = document.getElementById('navLinks');
         const menuOverlay = document.getElementById('menuOverlay');
         
@@ -1560,7 +1548,6 @@
         }
         
         mobileMenuBtn.addEventListener('click', openMenu);
-        closeMenuBtn.addEventListener('click', closeMenu);
         menuOverlay.addEventListener('click', closeMenu);
         
         // Close mobile menu when clicking on a link
@@ -1580,5 +1567,3 @@
     </script>
 </body>
 </html>
-
-
