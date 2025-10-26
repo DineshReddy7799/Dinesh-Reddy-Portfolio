@@ -136,37 +136,34 @@
         }
         
         .profile-img {
-    width: 280px;
-    height: 280px;
-    border-radius: 50%;
-    position: relative;
-    box-shadow: 0 0 50px rgba(99, 102, 241, 0.3);
-    animation: pulse 4s infinite;
-    overflow: hidden;
-    background: var(--gradient);
-    padding: 5px;
-}
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 0 0 50px rgba(99, 102, 241, 0.3);
+            animation: pulse 4s infinite;
+            overflow: hidden;
+            border: 5px solid var(--gradient);
+        }
 
-.profile-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 5px solid var(--dark);
-}
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
 
-.profile-img-placeholder {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: var(--dark);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--light);
-    font-size: 1.2rem;
-    border: 5px solid var(--dark);
-}
+        .profile-img-placeholder {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            font-size: 1.2rem;
+        }
         
         @keyframes pulse {
             0% {
@@ -232,7 +229,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(15, 23, 42, 0.8);
+            background: rgba(15, 23, 42, 0.9);
             backdrop-filter: blur(10px);
             z-index: 1000;
             padding: 15px 0;
@@ -285,6 +282,16 @@
         
         .nav-links a:hover::after {
             width: 100%;
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
         }
         
         /* Section Styles */
@@ -777,55 +784,6 @@
             box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
         }
         
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .profile-section {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .education-timeline::before {
-                left: 30px;
-            }
-            
-            .timeline-item {
-                width: calc(100% - 80px);
-                margin-left: 80px !important;
-            }
-            
-            .timeline-item::before {
-                left: -50px !important;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .nav-container {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .nav-links {
-                gap: 15px;
-            }
-            
-            .intro-text h1 {
-                font-size: 2.5rem;
-            }
-            
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .profile-img {
-                width: 220px;
-                height: 220px;
-            }
-        }
-        
         /* Skills Section */
         #skills {
             padding: 100px 0;
@@ -859,6 +817,316 @@
             align-items: center;
             gap: 10px;
         }
+        
+        /* ========== RESPONSIVE DESIGN ========== */
+        
+        /* Large devices (desktops, 1200px and down) */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 30px;
+            }
+        }
+        
+        /* Medium devices (tablets, 992px and down) */
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .profile-section {
+                flex-direction: column;
+                text-align: center;
+                gap: 40px;
+            }
+            
+            .education-timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: calc(100% - 80px);
+                margin-left: 80px !important;
+            }
+            
+            .timeline-item::before {
+                left: -50px !important;
+            }
+            
+            .profile-img {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .intro-text h1 {
+                font-size: 3rem;
+            }
+        }
+        
+        /* Small devices (landscape phones, 768px and down) */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+                padding: 10px 0;
+            }
+            
+            .nav-links {
+                gap: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-links a {
+                font-size: 0.9rem;
+            }
+            
+            .intro-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .intro-text .title {
+                font-size: 1.3rem;
+            }
+            
+            .intro-text p {
+                font-size: 1rem;
+            }
+            
+            .profile-img {
+                width: 220px;
+                height: 220px;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .contact-info {
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .contact-item {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+            
+            .skills-grid,
+            .skills-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .skill-category,
+            .skill-category-large {
+                padding: 25px;
+            }
+            
+            .certificates-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-content,
+            .experience-item,
+            .timeline-item {
+                padding: 25px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                text-align: center;
+            }
+            
+            .footer-column h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            section {
+                padding: 80px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(15, 23, 42, 0.95);
+                padding: 20px;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .shape:nth-child(1),
+            .shape:nth-child(2),
+            .shape:nth-child(3) {
+                display: none;
+            }
+        }
+        
+        /* Extra small devices (phones, 576px and down) */
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            .intro-text h1 {
+                font-size: 2rem;
+            }
+            
+            .intro-text .title {
+                font-size: 1.1rem;
+            }
+            
+            .profile-img {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title::after {
+                width: 80px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+            }
+            
+            .nav-links a {
+                font-size: 0.9rem;
+                padding: 10px 0;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .contact-item {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .cta-button {
+                padding: 10px 25px;
+                font-size: 0.9rem;
+            }
+            
+            .project-tech {
+                gap: 8px;
+            }
+            
+            .tech-tag {
+                padding: 4px 12px;
+                font-size: 0.75rem;
+            }
+            
+            .learning-points ul,
+            .project-features ul {
+                padding-left: 10px;
+            }
+            
+            .learning-points li,
+            .project-features li {
+                font-size: 0.9rem;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+            
+            .social-links a {
+                width: 40px;
+                height: 40px;
+            }
+            
+            /* Improve touch targets */
+            .cta-button,
+            .nav-links a,
+            .social-links a {
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            body {
+                font-size: 14px;
+            }
+            
+            .about-text,
+            .project-content p,
+            .experience-item p {
+                font-size: 0.95rem;
+                line-height: 1.7;
+            }
+        }
+        
+        /* Very small devices (phones, 400px and down) */
+        @media (max-width: 400px) {
+            .intro-text h1 {
+                font-size: 1.8rem;
+            }
+            
+            .profile-img {
+                width: 160px;
+                height: 160px;
+            }
+            
+            .section-title h2 {
+                font-size: 1.6rem;
+            }
+            
+            .nav-links {
+                gap: 12px;
+            }
+            
+            .nav-links a {
+                font-size: 0.85rem;
+            }
+            
+            .project-content,
+            .experience-item,
+            .timeline-item,
+            .skill-category,
+            .skill-category-large,
+            .certificate-card {
+                padding: 20px;
+            }
+            
+            .education-timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-item {
+                width: calc(100% - 60px);
+                margin-left: 60px !important;
+            }
+            
+            .timeline-item::before {
+                left: -40px !important;
+                width: 16px;
+                height: 16px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -866,7 +1134,10 @@
     <nav>
         <div class="container nav-container">
             <div class="logo">DINESH REDDY</div>
-            <ul class="nav-links">
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#about">About</a></li>
                 <li><a href="#education">Education</a></li>
                 <li><a href="#skills">Skills</a></li>
@@ -887,26 +1158,13 @@
         <div class="tech-background"></div>
         <div class="container header-content">
             <div class="profile-section">
-                <!-- ========== ADD YOUR PHOTO HERE ========== -->
                 <div class="profile-img">
-                    <!-- REPLACE THIS ENTIRE DIV WITH YOUR PHOTO -->
-                    <!-- Option 1: Local file -->
-                    <!-- <img src="your-photo.jpg" alt="Dinesh Reddy C"> -->
+                    <!-- Add your photo here -->
                     <img src="Untitled design.png" alt="Dinesh Reddy C">
-                    
-                    <!-- Option 2: Online URL -->
-                    <!-- <img src="https://example.com/your-photo.jpg" alt="Dinesh Reddy C"> -->
-                    
-                    <!-- Current placeholder (delete this when adding your photo) -->
-                    <div class="profile-img-placeholder">
-                        <i class="fas fa-user" style="font-size: 4rem;"></i>
-                    </div>
                 </div>
-                <!-- ========== END PHOTO SECTION ========== -->
-                
                 <div class="intro-text">
                     <h1>Dinesh Reddy C</h1>
-                    <!-- <div class="title">Passionate about Software Development, Cloud Computing, and AI Technologies</div> -->
+                    <div class="title">Full Stack Developer & AWS Cloud Enthusiast</div>
                     <p>Passionate about Software Development, Cloud Computing, and AI Technologies. Currently pursuing B.Tech in Computer Science with a CGPA of 8.72.</p>
                     <a href="#contact" class="cta-button">Get In Touch</a>
                     <div class="contact-info">
@@ -969,6 +1227,38 @@
                             <li><i class="fas fa-check"></i> Database Management</li>
                         </ul>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <div class="container">
+            <div class="section-title">
+                <h2>Education</h2>
+            </div>
+            <div class="education-timeline">
+                <div class="timeline-item">
+                    <h3>Srinivasa Ramanujan Institute of Technology</h3>
+                    <p class="location">Anantapur, India</p>
+                    <p class="degree">B.Tech, Computer Science and Engineering</p>
+                    <p class="date">2022 – Present</p>
+                    <p class="cgpa">CGPA: 8.72</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Vasavi Junior College</h3>
+                    <p class="location">Dharmavaram, India</p>
+                    <p class="degree">Intermediate (12th Grade)</p>
+                    <p class="date">2020 – 2022</p>
+                    <p class="percentage">Percentage: 80%</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Jeevananda English Medium High School</h3>
+                    <p class="location">Dharmavaram, India</p>
+                    <p class="degree">SSC (10th Grade)</p>
+                    <p class="date">2019 – 2020</p>
+                    <p class="gpa">GPA: 9.8</p>
                 </div>
             </div>
         </div>
@@ -1120,40 +1410,6 @@
         </div>
     </section>
 
-    <!-- Education Section -->
-    <section id="education">
-        <div class="container">
-            <div class="section-title">
-                <h2>Education</h2>
-            </div>
-            <div class="education-timeline">
-                <div class="timeline-item">
-                    <h3>Srinivasa Ramanujan Institute of Technology</h3>
-                    <p class="location">Anantapur, India</p>
-                    <p class="degree">B.Tech, Computer Science and Engineering</p>
-                    <p class="date">2022 – Present</p>
-                    <p class="cgpa">CGPA: 8.72</p>
-                </div>
-                <div class="timeline-item">
-                    <h3>Vasavi Junior College</h3>
-                    <p class="location">Dharmavaram, India</p>
-                    <p class="degree">Intermediate (12th Grade)</p>
-                    <p class="date">2020 – 2022</p>
-                    <p class="percentage">Percentage: 80%</p>
-                </div>
-                <div class="timeline-item">
-                    <h3>Jeevananda English Medium High School</h3>
-                    <p class="location">Dharmavaram, India</p>
-                    <p class="degree">SSC (10th Grade)</p>
-                    <p class="date">2019 – 2020</p>
-                    <p class="gpa">GPA: 9.8</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    
-
     <!-- Certificates Section -->
     <section id="certificates">
         <div class="container">
@@ -1244,6 +1500,21 @@
     </footer>
 
     <script>
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+        
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
