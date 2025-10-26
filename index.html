@@ -292,6 +292,7 @@
             color: var(--light);
             font-size: 1.5rem;
             cursor: pointer;
+            z-index: 1001;
         }
         
         /* Section Styles */
@@ -866,19 +867,17 @@
         /* Small devices (landscape phones, 768px and down) */
         @media (max-width: 768px) {
             .nav-container {
-                flex-direction: column;
-                gap: 15px;
+                flex-direction: row;
+                justify-content: space-between;
                 padding: 10px 0;
             }
             
             .nav-links {
-                gap: 20px;
-                flex-wrap: wrap;
-                justify-content: center;
+                display: none;
             }
             
-            .nav-links a {
-                font-size: 0.9rem;
+            .mobile-menu-btn {
+                display: block;
             }
             
             .intro-text h1 {
@@ -952,30 +951,62 @@
                 padding: 80px 0;
             }
             
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: rgba(15, 23, 42, 0.95);
-                padding: 20px;
-                border-top: 1px solid rgba(255, 255, 255, 0.1);
-            }
-            
-            .nav-links.active {
-                display: flex;
-            }
-            
             .shape:nth-child(1),
             .shape:nth-child(2),
             .shape:nth-child(3) {
                 display: none;
+            }
+            
+            /* Side mobile menu */
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 280px;
+                height: 100vh;
+                background: rgba(15, 23, 42, 0.98);
+                backdrop-filter: blur(20px);
+                padding: 80px 30px 30px;
+                border-left: 1px solid rgba(255, 255, 255, 0.1);
+                z-index: 999;
+                overflow-y: auto;
+                transform: translateX(0);
+                transition: transform 0.3s ease;
+            }
+            
+            .nav-links {
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .nav-links li {
+                margin-bottom: 20px;
+            }
+            
+            .nav-links a {
+                font-size: 1.1rem;
+                padding: 12px 0;
+                display: block;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .nav-links a::after {
+                display: none;
+            }
+            
+            /* Close button for mobile menu */
+            .close-menu {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                background: none;
+                border: none;
+                color: var(--light);
+                font-size: 1.5rem;
+                cursor: pointer;
+                z-index: 1001;
             }
         }
         
@@ -1004,15 +1035,6 @@
             
             .section-title::after {
                 width: 80px;
-            }
-            
-            .nav-links {
-                gap: 15px;
-            }
-            
-            .nav-links a {
-                font-size: 0.9rem;
-                padding: 10px 0;
             }
             
             .contact-info {
@@ -1095,14 +1117,6 @@
                 font-size: 1.6rem;
             }
             
-            .nav-links {
-                gap: 12px;
-            }
-            
-            .nav-links a {
-                font-size: 0.85rem;
-            }
-            
             .project-content,
             .experience-item,
             .timeline-item,
@@ -1126,6 +1140,27 @@
                 width: 16px;
                 height: 16px;
             }
+            
+            /* Smaller mobile menu */
+            .nav-links.active {
+                width: 250px;
+            }
+        }
+        
+        /* Overlay for mobile menu */
+        .menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 998;
+        }
+        
+        .menu-overlay.active {
+            display: block;
         }
     </style>
 </head>
@@ -1138,6 +1173,9 @@
                 <i class="fas fa-bars"></i>
             </button>
             <ul class="nav-links" id="navLinks">
+                <button class="close-menu" id="closeMenu">
+                    <i class="fas fa-times"></i>
+                </button>
                 <li><a href="#about">About</a></li>
                 <li><a href="#education">Education</a></li>
                 <li><a href="#skills">Skills</a></li>
@@ -1147,6 +1185,9 @@
             </ul>
         </div>
     </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="menu-overlay" id="menuOverlay"></div>
 
     <!-- Header Section -->
     <header>
@@ -1502,17 +1543,29 @@
     <script>
         // Mobile menu functionality
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const closeMenuBtn = document.getElementById('closeMenu');
         const navLinks = document.getElementById('navLinks');
+        const menuOverlay = document.getElementById('menuOverlay');
         
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
+        function openMenu() {
+            navLinks.classList.add('active');
+            menuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeMenu() {
+            navLinks.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        mobileMenuBtn.addEventListener('click', openMenu);
+        closeMenuBtn.addEventListener('click', closeMenu);
+        menuOverlay.addEventListener('click', closeMenu);
         
         // Close mobile menu when clicking on a link
         document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
+            link.addEventListener('click', closeMenu);
         });
         
         // Smooth scrolling for navigation links
